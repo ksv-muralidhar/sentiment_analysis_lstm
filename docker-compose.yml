@@ -1,0 +1,15 @@
+version: '3'
+services:
+  sentiment_analysis_api:
+    image: muralidhar0552/sentiment_analysis_api:latest
+    ports:
+      - "5001:5001"
+
+  sentiment_analysis_app:
+    depends_on:
+      - sentiment_analysis_api
+    image: muralidhar0552/sentiment_analysis_app:latest
+    ports:
+      - "5002:5002"
+    environment:
+      - API_URL=http://sentiment_analysis_api:5001
